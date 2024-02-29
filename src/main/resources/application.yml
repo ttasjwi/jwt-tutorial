@@ -23,3 +23,12 @@ logging:
   level:
     com.example: DEBUG
 
+jwt:
+  header: Authorization
+  # HS512 알고리즘을 적용하므로 512bit, 즉 64byte 이상의 secret key를 사용해야한다
+
+  # echo '순순히월급을넘기면유혈사태는일어나지않을것입니다' | base64
+  secret: 7Iic7Iic7Z6I7JuU6riJ7J2E64SY6riw66m07Jyg7ZiI7IKs7YOc64qU7J287Ja064KY7KeA7JWK7J2EIOqyg+yeheuLiOuLpAo=
+
+  # 24시간 = 86400초
+  token-validity-in-seconds: 86400
