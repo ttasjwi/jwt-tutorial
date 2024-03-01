@@ -23,13 +23,13 @@ class TokenAuthenticationFilter(
     }
 
     override fun doFilter(rq: ServletRequest?, rsp: ServletResponse?, chain: FilterChain?) {
+        log.debug { "토큰 인증 필터" }
         val request = rq as HttpServletRequest
-        val jwt = resolveToken(request)!!
+        val jwt = resolveToken(request)
         val requestURI = request.requestURI!!
 
         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt!!)) {
             val authentication = tokenProvider.getAuthentication(jwt)
-
             SecurityContextHolder.getContext().authentication = authentication
             log.debug { "Security Context에 '${authentication.name}' 인증정보를 저장했습니다. uri: ${requestURI}" }
         } else {
